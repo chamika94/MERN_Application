@@ -1,19 +1,29 @@
 import express from "express";
-import bodyParser from "body-Parser";
 import cors from "cors";
-//import userRoutes from "./routes/users.js";
-const app = express();
-const port = 5000;
+import mongoose from "mongoose";
+import morgan from "morgan";
 
-app.use(bodyParser.json());
+const app = express();
+
+app.use(morgan("dev"));
+app.use(express.json({limit:"30mb",extended:true}));
+app.use(express.urlencoded({limit:"30mb",extended:true}));
 app.use(cors());
 
-//app.use("/",userRoutes);
+const MONGODB_URL ="mongodb+srv://chamika:NIIMDsDDrpk2NJMf@cluster0.ipd5w.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+
+const port = 5000;
+
+mongoose.connect(MONGODB_URL).then(()=>{
+    app.listen(port,()=>{
+        console.log(`server running on port ${port}`)
+    })
+}).catch((error)=>console.log(`${error} did not connect`))
 
 
-app.get("/",(req, res) => res.send("Hello From Express"));
-app.all("*",(req,res)=>res.send("Not Found"));
 
-app.listen(port,() => 
- console.log(`Server is listening on port: http://localhost:5000`)
-);
+
+//password-'NIIMDsDDrpk2NJMf'
+//mongodb+srv://chamika:<password>@cluster0.ipd5w.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
+//mongodb+srv://chamika:<password>@cluster0.ipd5w.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
+
