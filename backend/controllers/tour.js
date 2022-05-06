@@ -1,7 +1,7 @@
 import TourModal from "../models/tour.js";
 
 export const createTour = async (req, res) => {
-    const tour = res.body;
+    const tour = req.body;
     const newTour = new TourModal({
         ...tour,
         createdAt: new Date().toISOString(),
