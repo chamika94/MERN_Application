@@ -43,6 +43,11 @@ const Header = () => {
           </MDBNavbarToggler>
           <MDBCollapse show={show} navbar>
           <MDBNavbarNav right fullWidth={false} className="mb-2 mb-lg-0">
+          {user?.result?._id && (
+              <h5 style={{ marginRight: "30px", marginTop: "23px" }}>
+                Logged in as: {user?.result?.name}
+              </h5>
+            )}
                 <MDBNavbarItem >
                     <MDBNavbarLink href="/">
                         <p className='header-text'>Home</p>
