@@ -52,7 +52,7 @@ const googleSuccess = (resp) =>{
     const token = resp?.tokenId;
     const googleId = resp?.googleId;
     const result = { email, name, token, googleId };
-    dispatch(googleSignIn({ result, navigate, toast }));
+    dispatch(googleSignIn({ result, navigate, toast}));
 };
 const googleFailure = (error) =>{
    toast.error(error);
