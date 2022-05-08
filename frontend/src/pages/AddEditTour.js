@@ -52,6 +52,7 @@ const AddEditTour = () => {
     }
     if (title && description && tags) {
       const updatedTourData = { ...tourData, name: user?.result?.name };
+      console.log(updatedTourData );
 
       if (!id) {
         dispatch(createTour({ updatedTourData, navigate, toast }));
