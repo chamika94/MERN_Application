@@ -12,6 +12,7 @@ import {
 } from "mdb-react-ui-kit";
 import {useSelector,useDispatch} from "react-redux";
 import { setLogout } from '../redux/features/authSlice';
+import { Link } from "react-router-dom";
 
 const Header = () => {
  
@@ -49,34 +50,34 @@ const Header = () => {
               </h5>
             )}
                 <MDBNavbarItem >
-                    <MDBNavbarLink href="/">
-                        <p className='header-text'>Home</p>
+                    <MDBNavbarLink>
+                    <Link to={'/'}><p className='header-text'>Home</p></Link>
                     </MDBNavbarLink>
                 </MDBNavbarItem>
 
                 {user?.result?._id ? (
                   <>
                 <MDBNavbarItem >
-                    <MDBNavbarLink href="/addTour">
-                        <p className='header-text'>Add Tour</p>
+                    <MDBNavbarLink>
+                    <Link to={'/addTour'}><p className='header-text'>Add Tour</p></Link>  
                     </MDBNavbarLink>
                 </MDBNavbarItem>
                 <MDBNavbarItem >
-                    <MDBNavbarLink href="/dashboard">
-                        <p className='header-text'>Dashboard</p>
+                    <MDBNavbarLink >
+                        <Link to={'/dashboard'}><p className='header-text'>Dashboard</p></Link>  
                     </MDBNavbarLink>
                 </MDBNavbarItem>                  
                 <MDBNavbarItem >
-                    <MDBNavbarLink href="/login" onClick={() => handleLogout()}>
-                        <p className='header-text'>Logout</p>
+                    <MDBNavbarLink  onClick={() => handleLogout()}>
+                    <Link to={'/'}><p className='header-text'>Logout</p></Link>  
                     </MDBNavbarLink>
                 </MDBNavbarItem>
                   </>
                 ):(
                   <>
                 <MDBNavbarItem >
-                    <MDBNavbarLink href="/login">
-                        <p className='header-text'>Login</p>
+                    <MDBNavbarLink >
+                    <Link to={'/login'}><p className='header-text'>Login</p></Link>  
                     </MDBNavbarLink>
                 </MDBNavbarItem>
                   </>
