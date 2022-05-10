@@ -1,4 +1,5 @@
 import TourModal from "../models/tour.js";
+import mongoose from "mongoose";
 
 export const createTour = async (req, res) => {
     const tour = req.body;
@@ -29,8 +30,12 @@ export const getTour = async (req, res) => {
     const {id} = req.params;
   
     try {
-      const tour = await TourModal.findOne({_id:id});  
-      res.status(200).json(tour);
+        
+        if(mongoose.Types.ObjectId.isValid(id)) {
+            const tour = await TourModal.findById(id);  
+            res.status(200).json(tour);
+        }  
+
     } catch (error) {
       res.status(500).json({ message: "Something went wrong" });
       console.log(error);
@@ -38,11 +43,18 @@ export const getTour = async (req, res) => {
   };
 
   export const getToursByUser = async (req, res) => {
-    const {id} = req.params;
+   const {id} = req.params;
   
     try {
-      const tours = await TourModal.find({_id:id});  
-      res.status(200).json(tours);
+        
+            const tours = await TourModal.find({creator:id}); 
+            if(tours){
+                res.status(200).json(tours);
+            }else{
+                res.status(404).json({ message: "Tour Not Found" });
+            } 
+            
+        
     } catch (error) {
       res.status(500).json({ message: "Something went wrong" });
       console.log(error);

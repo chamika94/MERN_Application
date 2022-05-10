@@ -64,7 +64,7 @@ const Header = () => {
                 </MDBNavbarItem>
                 <MDBNavbarItem >
                     <MDBNavbarLink >
-                        <Link to={'/dashboard'}><p style={{ color:"#F2F7FD"}} className='header-text'>Dashboard</p></Link>  
+                        <Link to={`/dashboard/${user.result._id}`}><p style={{ color:"#F2F7FD"}} className='header-text'>Dashboard</p></Link>  
                     </MDBNavbarLink>
                 </MDBNavbarItem>                  
                 <MDBNavbarItem >
