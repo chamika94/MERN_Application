@@ -7,6 +7,6 @@ import { getToursByUser, createTour, getTours, getTour} from "../controllers/tou
 router.post("/", auth, createTour);
 router.get("/",getTours);
 router.get("/:id",getTour);
-router.get("/dashboard/:id",getToursByUser);
+router.get("/userTours/:id", auth, getToursByUser);
 
 export default router

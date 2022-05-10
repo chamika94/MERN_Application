@@ -3,7 +3,7 @@ import { MDBCol, MDBContainer, MDBRow, MDBTypography } from "mdb-react-ui-kit";
 import { useDispatch, useSelector } from "react-redux";
 import { getTours } from "../redux/features/tourSlice";
 import CardTour from "../components/CardTour";
-import { clearTour } from "../redux/features/tourSlice";
+import Spinner from "../components/Spinner";
 
 const Home = () => {
   const { tours, loading } = useSelector(
@@ -14,12 +14,11 @@ const Home = () => {
   const dispatch = useDispatch();
   
   useEffect(() => {
-    dispatch(clearTour());
     dispatch(getTours());
   }, []);
 
   if (loading) {
-    return <h1>Loading...</h1>;
+    return <Spinner />;
   }
   return (
     <div

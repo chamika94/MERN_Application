@@ -12,11 +12,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
 import moment from "moment";
 import { getTour } from "../redux/features/tourSlice";
+import Spinner from "../components/Spinner";
 
 
 const SingleTour = () => {
   const dispatch = useDispatch();
-  const { tour } = useSelector((state) => ({ ...state.tour }));
+  const { tour ,loading} = useSelector((state) => ({ ...state.tour }));
   const { id } = useParams();
   const navigate = useNavigate();
  
@@ -27,10 +28,16 @@ const SingleTour = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
+
+
+  if (loading) {
+    return <Spinner />;
+  }
+
   return (
     <>
       <MDBContainer >
-        <MDBCard className="mb-3 bg-info" style={{marginTop:"63px"}}>
+        <MDBCard className="mb-3 " style={{marginTop:"67px"}}>
           <MDBCardImage
             position="top"
             style={{ width: "100%", maxHeight: "600px", objectFit: 'cover'}}

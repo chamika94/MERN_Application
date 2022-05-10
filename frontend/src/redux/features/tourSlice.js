@@ -69,11 +69,7 @@ const tourSlice = createSlice({
     error: "",
     loading: false,
   },
-  reducers:{
-    clearTour : (state,action) => {
-        state.tour = {};
-    },
-  },
+
   extraReducers: {
     [createTour.pending]: (state, action) => {
       state.loading = true;
@@ -122,6 +118,6 @@ const tourSlice = createSlice({
   },
 });
 
-export const {clearTour} = tourSlice.actions;
+
 
 export default tourSlice.reducer;

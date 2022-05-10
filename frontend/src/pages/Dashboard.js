@@ -14,6 +14,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import {  getToursByUser } from "../redux/features/tourSlice";
+import Spinner from "../components/Spinner";
 
 
 const Dashboard = () => {
@@ -35,7 +36,9 @@ const Dashboard = () => {
     }
     return str;
   };
-
+  if (loading) {
+    return <Spinner />;
+  }
   return (
     <div
       style={{
