@@ -26,10 +26,10 @@ const Header = () => {
     };
 
   return (
-    <MDBNavbar fixed='top' expand="lg" style={{backgroundColor:"#f0e6ea"}}>
+    <MDBNavbar fixed='top' expand="lg" style={{backgroundColor:"#0E2C51"}}>
       <MDBContainer>
           <MDBNavbarBrand href="/"
-          style={{ color:"#606080", fontweight:"600", fontSize:"22px"}}
+          style={{ color:"#F2F7FD", fontweight:"600", fontSize:"22px"}}
           >
           Touropedia    
           </MDBNavbarBrand>
@@ -38,20 +38,20 @@ const Header = () => {
            arial-expanded="false"
            aria-label="Togel navigation"
            onClick={() => setShow(!show)}
-           style={{ color:"#606080"}}
+           style={{ color:"#F2F7FD"}}
           >
            <MDBIcon icon="bars" fas />   
           </MDBNavbarToggler>
           <MDBCollapse show={show} navbar>
           <MDBNavbarNav right fullWidth={false} className="mb-2 mb-lg-0">
           {user?.result?._id && (
-              <h5 style={{ marginRight: "30px", marginTop: "23px" }}>
+              <h5 style={{ marginRight: "30px", marginTop: "23px" ,color:"#BEC5CE"}}>
                 Logged in as: {user?.result?.name}
               </h5>
             )}
                 <MDBNavbarItem >
                     <MDBNavbarLink>
-                    <Link to={'/'}><p className='header-text'>Home</p></Link>
+                    <Link to={'/'}><p style={{ color:"#F2F7FD"}} className='header-text'>Home</p></Link>
                     </MDBNavbarLink>
                 </MDBNavbarItem>
 
@@ -59,17 +59,17 @@ const Header = () => {
                   <>
                 <MDBNavbarItem >
                     <MDBNavbarLink>
-                    <Link to={'/addTour'}><p className='header-text'>Add Tour</p></Link>  
+                    <Link to={'/addTour'}><p style={{ color:"#F2F7FD"}} className='header-text'>Add Tour</p></Link>  
                     </MDBNavbarLink>
                 </MDBNavbarItem>
                 <MDBNavbarItem >
                     <MDBNavbarLink >
-                        <Link to={'/dashboard'}><p className='header-text'>Dashboard</p></Link>  
+                        <Link to={'/dashboard'}><p style={{ color:"#F2F7FD"}} className='header-text'>Dashboard</p></Link>  
                     </MDBNavbarLink>
                 </MDBNavbarItem>                  
                 <MDBNavbarItem >
                     <MDBNavbarLink  onClick={() => handleLogout()}>
-                    <Link to={'/'}><p className='header-text'>Logout</p></Link>  
+                    <Link to={'/'}><p style={{ color:"#F2F7FD"}} className='header-text'>Logout</p></Link>  
                     </MDBNavbarLink>
                 </MDBNavbarItem>
                   </>
@@ -77,7 +77,7 @@ const Header = () => {
                   <>
                 <MDBNavbarItem >
                     <MDBNavbarLink >
-                    <Link to={'/login'}><p className='header-text'>Login</p></Link>  
+                    <Link to={'/login'}><p style={{ color:"#F2F7FD"}} className='header-text'>Login</p></Link>  
                     </MDBNavbarLink>
                 </MDBNavbarItem>
                   </>

@@ -3,6 +3,7 @@ import { MDBCol, MDBContainer, MDBRow, MDBTypography } from "mdb-react-ui-kit";
 import { useDispatch, useSelector } from "react-redux";
 import { getTours } from "../redux/features/tourSlice";
 import CardTour from "../components/CardTour";
+import { clearTour } from "../redux/features/tourSlice";
 
 const Home = () => {
   const { tours, loading } = useSelector(
@@ -13,9 +14,8 @@ const Home = () => {
   const dispatch = useDispatch();
   
   useEffect(() => {
+    dispatch(clearTour());
     dispatch(getTours());
-   
-  
   }, []);
 
   if (loading) {
@@ -36,7 +36,6 @@ const Home = () => {
             No Tours Found
           </MDBTypography>
         )}
-
         <MDBCol>
           <MDBContainer>
             <MDBRow className="row-cols-1 row-cols-md-3 g-3">
