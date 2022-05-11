@@ -14,6 +14,7 @@ import { Link } from "react-router-dom";
 
 
 
+
 const CardTour = ({
   imageFile,
   description,
@@ -21,6 +22,7 @@ const CardTour = ({
   tags,
   _id,
   name,
+  
 }) => {
 
   const excerpt = (str) => {
@@ -48,12 +50,15 @@ const CardTour = ({
             <Link to={`#`}> #{tag}</Link>
           ))}
         </span>
+
         <MDBCardBody>
           <MDBCardTitle className="text-start">{title}</MDBCardTitle>
+
           <MDBCardText className="text-start">
             {excerpt(description)}
             <Link to={`/tour/${_id}`}>Read More</Link>
           </MDBCardText>
+
         </MDBCardBody>
       </MDBCard>
     </MDBCardGroup>

@@ -14,7 +14,6 @@ import moment from "moment";
 import { getTour } from "../redux/features/tourSlice";
 import Spinner from "../components/Spinner";
 
-
 const SingleTour = () => {
   const dispatch = useDispatch();
   const { tour ,loading} = useSelector((state) => ({ ...state.tour }));
@@ -76,7 +75,7 @@ const SingleTour = () => {
                 size="lg"
               />
               <small className="text-muted">
-                {moment(tour.createdAt).fromNow()}
+                {moment(tour.createAt).fromNow()}
               </small>
             </MDBCardText>
             <MDBCardText className="lead mb-0 text-start">

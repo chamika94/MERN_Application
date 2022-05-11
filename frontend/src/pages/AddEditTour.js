@@ -11,7 +11,7 @@ import FileBase from "react-file-base64";
 import { toast } from "react-toastify";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { createTour} from "../redux/features/tourSlice";
+import { createTour, updateTour} from "../redux/features/tourSlice";
 
 const TourData = {
   title: "",
@@ -31,11 +31,11 @@ const AddEditTour = () => {
 
   const { title, description, tags } = tourData;
   const { id } = useParams();
-
+ 
   useEffect(() => {
     if (id) {
       const singleTour = userTours.find((tour) => tour._id === id);
-      console.log(singleTour);
+    //  console.log(singleTour);
       setTourData({ ...singleTour });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -52,12 +52,12 @@ const AddEditTour = () => {
     }
     if (title && description && tags) {
       const updatedTourData = { ...tourData, name: user?.result?.name };
-      console.log(updatedTourData );
+    //  console.log(updatedTourData );
 
-      if (!id) {
-        dispatch(createTour({ updatedTourData, navigate, toast }));
+      if (id) {
+        dispatch(updateTour({id , updatedTourData, navigate, toast}));
       } else {
-       
+        dispatch(createTour({ updatedTourData, navigate, toast }));
       }
       handleClear();
     }

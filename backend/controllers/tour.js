@@ -43,7 +43,7 @@ export const getTour = async (req, res) => {
   };
 
   export const getToursByUser = async (req, res) => {
-   const {id} = req.params;
+   const id = req.userId;
   
     try {
         
@@ -55,6 +55,33 @@ export const getTour = async (req, res) => {
             } 
             
         
+    } catch (error) {
+      res.status(500).json({ message: "Something went wrong" });
+      console.log(error);
+    }
+  };
+
+  export const updateTour = async (req, res) => {
+    const {id} = req.params;
+    const userId = req.userId; 
+    const {title,description,imageFile,tags,creator} = req.body;
+  
+    try {
+        if(mongoose.Types.ObjectId.isValid(id)) {
+            const updatedTour ={
+                title,
+                description,
+                imageFile,
+                tags,
+                creator:userId,
+                _id:id,
+            }
+            await TourModal.findByIdAndUpdate(id,updatedTour,{new: true});  
+            res.status(200).json(updatedTour);
+        }else{
+            return res.status(404).json({ message: `No tour exist with id: ${id}` });
+        }  
+
     } catch (error) {
       res.status(500).json({ message: "Something went wrong" });
       console.log(error);
