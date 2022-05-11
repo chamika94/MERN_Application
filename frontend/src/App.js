@@ -41,8 +41,12 @@ function App() {
               <PrivateRoute>
                    <Dashboard/>
               </PrivateRoute>
-            }/>       
-            <Route path="/editTour/:id" element={<AddEditTour/>}/>       
+               }/>       
+              <Route path="/editTour/:id" element={
+              <PrivateRoute>
+                    <AddEditTour/>
+              </PrivateRoute>
+               }/>       
             </Routes>
     </div>
     </BrowserRouter>
