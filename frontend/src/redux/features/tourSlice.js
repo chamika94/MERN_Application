@@ -5,7 +5,6 @@ export const createTour = createAsyncThunk(
   "tour/createTour",
   async ({ updatedTourData, navigate, toast }, { rejectWithValue }) => {
     try {
-        console.log("resp",updatedTourData)
       const response = await api.createTour(updatedTourData);
       toast.success("Tour Added Successfully");
       navigate("/");
@@ -72,6 +71,21 @@ export const updateTour = createAsyncThunk(
   }
 );
 
+export const deleteTour = createAsyncThunk(
+  "tour/updateTour",
+  async ({ id, toast}, { rejectWithValue }) => {
+    try {
+      
+      const response = await api.deleteTour(id);
+      toast.success("Tour delete Successfully");
+    
+       return response.data;
+     
+    } catch (err) {
+      return rejectWithValue(err.response.data);
+    }
+  }
+);
 
 const tourSlice = createSlice({
   name: "tour",
@@ -136,21 +150,38 @@ const tourSlice = createSlice({
       state.loading = true;
     },
     [updateTour.fulfilled]: (state, action) => {
+      //console.log("action",action);
       state.loading = false;
-      const {arg: { id },} = action.meta;
-      if (id) {
-        state.userTours = state.userTours.map((item) =>
-          item._id === id ? action.payload : item
-        );
-        state.tours = state.tours.map((item) =>
-          item._id === id ? action.payload : item
-        );
+      const {arg:{id}} = action.meta;
+      if(id){
+        state.userTours = state.userTours.map((item)=>item._id === id ? action.payload : item );
+        state.tours = state.tours.map((item)=>item._id === id ? action.payload : item);
       }
+      
     },
     [updateTour.rejected]: (state, action) => {
       state.loading = false;
       state.error = action.payload.message;
     },
+    [deleteTour.pending]: (state, action) => {
+      state.loading = true;
+    },
+    [deleteTour.fulfilled]: (state, action) => {
+      //console.log("action",action);
+      state.loading = false;
+      const {arg:{id}} = action.meta;
+      if(id){
+        state.userTours = state.userTours.filter((item) => item._id !== id );
+        state.tours = state.tours.filter((item) => item._id !== id);
+      }
+      
+    },
+    [deleteTour.rejected]: (state, action) => {
+      state.loading = false;
+      state.error = action.payload.message;
+    },
+
+
   },
 });
 

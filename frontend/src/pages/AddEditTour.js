@@ -50,7 +50,7 @@ const AddEditTour = () => {
     if (!tags.length) {
       setTagErrMsg("Please provide some tags");
     }
-    if (title && description && tags) {
+    if (title && description && tags.length) {
       const updatedTourData = { ...tourData, name: user?.result?.name };
     //  console.log(updatedTourData );
 

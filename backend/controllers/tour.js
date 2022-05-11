@@ -79,7 +79,7 @@ export const getTour = async (req, res) => {
             await TourModal.findByIdAndUpdate(id,updatedTour,{new: true});  
             res.status(200).json(updatedTour);
         }else{
-            return res.status(404).json({ message: `No tour exist with id: ${id}` });
+         res.status(404).json({ message: `No tour exist with id: ${id}` });
         }  
 
     } catch (error) {
