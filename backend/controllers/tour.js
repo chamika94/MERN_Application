@@ -87,3 +87,18 @@ export const getTour = async (req, res) => {
       console.log(error);
     }
   };
+
+  export const deleteTour = async (req, res) => {
+    const {id} = req.params;
+    try {
+        if(!mongoose.Types.ObjectId.isValid(id)) {
+            return res.status(404).json({ message: `No tour exist with id: ${id}` });
+        }else{
+            await TourModal.findByIdAndRemove(id);  
+            res.status(200).json({ message: "Tour delete successfully.!"});
+        }  
+    } catch (error) {
+      res.status(500).json({ message: "Something went wrong" });
+      console.log(error);
+    }
+  };

@@ -31,7 +31,7 @@ const AddEditTour = () => {
 
   const { title, description, tags } = tourData;
   const { id } = useParams();
- 
+
   useEffect(() => {
     if (id) {
       const singleTour = userTours.find((tour) => tour._id === id);
@@ -55,7 +55,7 @@ const AddEditTour = () => {
     //  console.log(updatedTourData );
 
       if (id) {
-        dispatch(updateTour({id , updatedTourData, navigate, toast}));
+        dispatch(updateTour({ id , updatedTourData, navigate, toast}));
       } else {
         dispatch(createTour({ updatedTourData, navigate, toast }));
       }

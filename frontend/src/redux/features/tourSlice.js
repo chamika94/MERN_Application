@@ -58,12 +58,12 @@ export const getToursByUser = createAsyncThunk(
 
 export const updateTour = createAsyncThunk(
   "tour/updateTour",
-  async ({id, updatedTourData, navigate, toast}, { rejectWithValue }) => {
+  async ({ id, updatedTourData, navigate, toast}, { rejectWithValue }) => {
     try {
       
       const response = await api.updateTour({id,updatedTourData});
       toast.success("Tour Update Successfully");
-      navigate("/");
+      navigate(`/dashboard`);
        return response.data;
      
     } catch (err) {
